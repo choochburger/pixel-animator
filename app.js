@@ -17,6 +17,8 @@ var app = express();
  * Auth
  **/
 
+everyauth.debug = true;
+
 everyauth.google
   .appId(config.google.clientId)
   .appSecret(config.google.clientSecret)
@@ -24,7 +26,7 @@ everyauth.google
   .findOrCreateUser(function (sess, accessToken, extra, googleUser) {
     googleUser.refreshToken = extra.refresh_token;
     googleUser.expiresIn = extra.expires_in;
-    return usersByGoogleId[googleUser.id] || (usersByGoogleId[googleUser.id] = addUser('google', googleUser));
+    return googleUser;
   })
   .redirectPath('/');
 

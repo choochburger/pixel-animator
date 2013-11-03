@@ -1,8 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-
   if (!everyauth.loggedIn)
     h2 Not Authenticated
+    p Login with Google
+    .google-login
+      a(href='/auth/google', style='border: 0px')
+        img(style='border: 0px', src='https://www.google.com/favicon.ico')
+  else
+    p Word. 
