@@ -1,3 +1,7 @@
 module.exports = {
-  cookieSecret: 'xxx'
+  cookieSecret: 'XXX',
+  google: {
+    clientId: 'XXXXXXXXXX.apps.googleusercontent.com',
+    clientSecret: 'XXXXXXXXXXXXXXXXXXXXXXXX'
+  }
 };
