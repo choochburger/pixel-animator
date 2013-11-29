@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.3.1
 -- Dumped by pg_dump version 9.3.1
--- Started on 2013-11-29 13:23:41 EST
+-- Started on 2013-11-29 13:45:26 EST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -14,7 +14,7 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- TOC entry 2231 (class 1262 OID 16394)
+-- TOC entry 2225 (class 1262 OID 16394)
 -- Name: pixel_animator; Type: DATABASE; Schema: -; Owner: -
 --
 
@@ -39,7 +39,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2234 (class 0 OID 0)
+-- TOC entry 2228 (class 0 OID 0)
 -- Dependencies: 176
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
 --
@@ -64,7 +64,8 @@ CREATE TABLE user_accounts (
     avatar text,
     first_name text,
     last_name text,
-    service text
+    service text,
+    service_user_id text
 );
 
 
@@ -82,7 +83,7 @@ CREATE SEQUENCE user_accounts_id_seq
 
 
 --
--- TOC entry 2235 (class 0 OID 0)
+-- TOC entry 2229 (class 0 OID 0)
 -- Dependencies: 173
 -- Name: user_accounts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
@@ -116,7 +117,7 @@ CREATE SEQUENCE user_animations_id_seq
 
 
 --
--- TOC entry 2236 (class 0 OID 0)
+-- TOC entry 2230 (class 0 OID 0)
 -- Dependencies: 175
 -- Name: user_animations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
@@ -137,7 +138,7 @@ CREATE TABLE users (
 
 
 --
--- TOC entry 2237 (class 0 OID 0)
+-- TOC entry 2231 (class 0 OID 0)
 -- Dependencies: 170
 -- Name: COLUMN users.name; Type: COMMENT; Schema: public; Owner: -
 --
@@ -159,7 +160,7 @@ CREATE SEQUENCE users_id_seq
 
 
 --
--- TOC entry 2238 (class 0 OID 0)
+-- TOC entry 2232 (class 0 OID 0)
 -- Dependencies: 171
 -- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
@@ -192,63 +193,6 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
--- TOC entry 2223 (class 0 OID 16428)
--- Dependencies: 172
--- Data for Name: user_accounts; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY user_accounts (user_id, id, avatar, first_name, last_name, service) FROM stdin;
-\.
-
-
---
--- TOC entry 2239 (class 0 OID 0)
--- Dependencies: 173
--- Name: user_accounts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('user_accounts_id_seq', 1, false);
-
-
---
--- TOC entry 2225 (class 0 OID 16443)
--- Dependencies: 174
--- Data for Name: user_animations; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY user_animations (id, user_id, data) FROM stdin;
-\.
-
-
---
--- TOC entry 2240 (class 0 OID 0)
--- Dependencies: 175
--- Name: user_animations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('user_animations_id_seq', 1, false);
-
-
---
--- TOC entry 2221 (class 0 OID 16397)
--- Dependencies: 170
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY users (created, id, name) FROM stdin;
-\.
-
-
---
--- TOC entry 2241 (class 0 OID 0)
--- Dependencies: 171
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('users_id_seq', 1, false);
-
-
---
 -- TOC entry 2111 (class 2606 OID 16435)
 -- Name: user_accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
@@ -276,7 +220,7 @@ ALTER TABLE ONLY users
 
 
 --
--- TOC entry 2233 (class 0 OID 0)
+-- TOC entry 2227 (class 0 OID 0)
 -- Dependencies: 5
 -- Name: public; Type: ACL; Schema: -; Owner: -
 --
@@ -287,7 +231,7 @@ GRANT ALL ON SCHEMA public TO chrislyons;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2013-11-29 13:23:41 EST
+-- Completed on 2013-11-29 13:45:26 EST
 
 --
 -- PostgreSQL database dump complete
