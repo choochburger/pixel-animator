@@ -8,8 +8,27 @@ var users = {
     });
   },
 
+  findByService: function(id, service) {
+    var sql  = 'SELECT * from user_accounts ';
+        sql += 'WHERE service_user_id=$1 ';
+        sql += 'AND service=$2';
+
+    return db.query(sql, [id, service]).then(function(res) {
+      var userAccount = res[0];
+      return userAccount;
+    }).then(function(userAccount) {
+      if (!userAccount) return undefined;
+      return users.find(userAccount.user_id);
+    });
+  },
+
   findAll: function() {
     return db.query('SELECT * FROM users');
+  },
+
+  createByService: function(id, service) {
+    console.log('creating... (not implemented)');
+    return false;
   }
 };
 

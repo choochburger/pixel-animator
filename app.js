@@ -25,9 +25,11 @@ everyauth.google
   .appSecret(config.google.clientSecret)
   .scope('https://www.googleapis.com/auth/userinfo.profile https://www.google.com/m8/feeds/')
   .findOrCreateUser(function (sess, accessToken, extra, googleUser) {
+    var users = models.users;
     googleUser.refreshToken = extra.refresh_token;
     googleUser.expiresIn = extra.expires_in;
-    return googleUser;
+    return users.findByService(googleUser.id, 'google') ||
+           users.createByService(googleUser.id, 'google');
   })
   .redirectPath('/');
 
