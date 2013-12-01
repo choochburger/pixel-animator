@@ -9,31 +9,10 @@ var everyauth = require('everyauth'),
     user = require('./routes/user'),
     http = require('http'),
     path = require('path'),
-    pg = require('pg'),
-    config = require('./config');
+    config = require('./config'),
+    models = require('./models');
 
 var app = express();
-
-/**
- * Postgres
- **/
-
-var db = 'postgres://chrislyons@localhost/pixel_animator';
-var client = new pg.Client(db);
-
-client.connect(function(err) {
-  if (err) {
-    return console.error('could not connect to postgres', err);
-  }
-  client.query('SELECT * FROM users', function(err, result) {
-    console.log(result.rows);
-    if (err) {
-      return console.error('error running query', err);
-    }
-    //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
-    client.end();
-  });
-});
 
 /**
  * Auth
