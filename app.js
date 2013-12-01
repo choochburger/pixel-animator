@@ -16,6 +16,7 @@ var app = express();
 // all environments
 app
   .set('port', process.env.PORT || 3000)
+  .set('env',  process.env.NODE_ENV || 'development')
   .set('views', __dirname + '/views')
   .set('view engine', 'jade')
   .use(express.favicon())
@@ -29,7 +30,7 @@ app
   .use(express.static(path.join(__dirname, 'public')));
 
 // development only
-if (process.env.NODE_ENV !== 'production') {
+if (app.get('env') !== 'production') {
   app.use(express.errorHandler());
   everyauth.debug = true;
 }
