@@ -4,8 +4,15 @@ block content
   if (!everyauth.loggedIn)
     h2 Not Authenticated
     p Login with Google
-    .google-login
+    .google_login
       a(href='/auth/google', style='border: 0px')
         img(style='border: 0px', src='https://www.google.com/favicon.ico')
+
+    hr
+    
+    p Login with Facebook
+    .facebook_login
+      a(href='/auth/facebook', style='border: 0px')
+        img(style='border: 0px', src='https://www.facebook.com/favicon.ico')
   else
     p Word. 
