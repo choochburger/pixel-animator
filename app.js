@@ -10,7 +10,8 @@ var everyauth = require('everyauth'),
     http = require('http'),
     path = require('path'),
     config = require('./config'),
-    models = require('./models');
+    models = require('./models'),
+    users = models.users;
 
 var app = express();
 
@@ -25,11 +26,20 @@ everyauth.google
   .appSecret(config.google.clientSecret)
   .scope('https://www.googleapis.com/auth/userinfo.profile https://www.google.com/m8/feeds/')
   .findOrCreateUser(function (sess, accessToken, extra, googleUser) {
-    var users = models.users;
     googleUser.refreshToken = extra.refresh_token;
     googleUser.expiresIn = extra.expires_in;
-    return users.findByService(googleUser.id, 'google') ||
-           users.createByService(googleUser.id, 'google');
+
+    return users.findByService(googleUser.id, 'google').then(function(user) {
+      if (user) {
+        return user;
+      } else {
+         return users.createByService(googleUser.id, 'google', {
+           firstName: googleUser.given_name,
+           lastName:  googleUser.family_name,
+           avatar:    googleUser.link
+         });
+      }
+    });
   })
   .redirectPath('/');
 
