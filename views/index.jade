@@ -15,4 +15,6 @@ block content
       a(href='/auth/facebook', style='border: 0px')
         img(style='border: 0px', src='https://www.facebook.com/favicon.ico')
   else
-    p Word. 
+    p
+      | Welcome to Pixel Animator, #{everyauth.user.first_name} #{everyauth.user.last_name}
+    img(src='#{everyauth.user.avatar}' style='max-width: 100px;')
