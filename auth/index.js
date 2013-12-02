@@ -20,8 +20,8 @@ module.exports = function(config) {
    **/
 
   everyauth.google
-    .appId(config.google.clientId)
-    .appSecret(config.google.clientSecret)
+    .appId(process.env.GOOGLE_CLIENT_ID || config.google.clientId)
+    .appSecret(process.env.GOOGLE_CLIENT_SECRET || config.google.clientSecret)
     .scope('https://www.googleapis.com/auth/userinfo.profile https://www.google.com/m8/feeds/')
     .findOrCreateUser(function (session, accessToken, extra, googleUser) {
       var promise = new EAPromise(),
@@ -53,8 +53,8 @@ module.exports = function(config) {
    **/
 
   everyauth.facebook
-    .appId(config.facebook.appId)
-    .appSecret(config.facebook.appSecret)
+    .appId(process.env.FACEBOOK_APP_ID || config.facebook.appId)
+    .appSecret(process.env.FACEBOOK_APP_SECRET || config.facebook.appSecret)
     .findOrCreateUser(function (session, accessToken, extra, fbUser) {
       var promise = new EAPromise(),
           serviceName = 'facebook';

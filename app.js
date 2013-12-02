@@ -23,7 +23,7 @@ app
   .use(express.logger('dev'))
   .use(express.bodyParser())
   .use(express.methodOverride())
-  .use(express.cookieParser(config.cookieSecret))
+  .use(express.cookieParser(process.env.COOKIE_SECRET || config.cookieSecret))
   .use(express.session())
   .use(everyauth.middleware(app))
   .use(app.router)
