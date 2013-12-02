@@ -2,51 +2,30 @@ var db = require('../db/db.js');
 
 var users = {
   find: function(id) {
-    var user = db.query('SELECT * FROM user_accounts WHERE user_id=$1', [id]);
-    return user.then(function(res) {
-      return res[0];
-    });
+    return db.query('SELECT * FROM users WHERE id=$1', [id]);
   },
 
   findByService: function(id, service) {
-    var sql  = 'SELECT * from user_accounts ';
+    var sql  = 'SELECT * from users ';
         sql += 'WHERE service_user_id=$1 ';
         sql += 'AND service=$2';
 
-    return db.query(sql, [id, service]).then(function(res) {
-      return res[0];
-    });
-  },
-
-  findAll: function() {
-    return db.query('SELECT * FROM users');
-  },
-
-  create: function(name) {
-    var sql = 'INSERT INTO users (name) VALUES ($1) RETURNING *';
-    return db.query(sql, [name]).then(function(res) {
-      return res[0];
-    });
+    return db.query(sql, [id, service]);
   },
 
   createByService: function(serviceUserId, service, opts) {
-    var firstName  = opts.firstName || 'Pat',
-        lastName   = opts.lastName  || 'McNoname',
-        avatar     = opts.avatar    || '/images/default_avatar.png',
-        fullName   = firstName + ' ' + lastName;
+    var firstName = opts.firstName || 'Pat',
+        lastName  = opts.lastName  || 'McNoname',
+        avatar    = opts.avatar    || '/images/default_avatar.png';
 
-    return users.create(fullName).then(function(user) {
-      var sql  = 'INSERT INTO user_accounts ';
-          sql += '(user_id, first_name, last_name, avatar, service, service_user_id) ';
-          sql += 'VALUES ($1, $2, $3, $4, $5, $6) ';
-          sql += 'RETURNING *';
+    var sql  = 'INSERT INTO users ';
+        sql += '(first_name, last_name, avatar, service, service_user_id) ';
+        sql += 'VALUES ($1, $2, $3, $4, $5) ';
+        sql += 'RETURNING *';
 
-      var params = [user.id,  firstName,  lastName, avatar, service, serviceUserId];
+    var params = [firstName, lastName, avatar, service, serviceUserId];
 
-      return db.query(sql, params).then(function(res) {
-        return res[0];
-      });
-    });
+    return db.query(sql, params);
   }
 };
 

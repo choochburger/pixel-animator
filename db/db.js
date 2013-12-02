@@ -21,7 +21,10 @@ var db = {
             reject(msg);
             return console.error(msg, err);
           }
-          resolve(result.rows);
+
+          var rows = result.rows;
+          if (rows.length > 1) resolve(rows);
+          else resolve(rows[0]);
         });
       });
     });

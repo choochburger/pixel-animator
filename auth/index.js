@@ -9,7 +9,6 @@ module.exports = function(config) {
    * All
    **/
   everyauth.everymodule
-    .userPkey('user_id')
     .findUserById(function (req, userId, callback) {
       users.find(userId).done(function(user) {
         callback(null, user);
