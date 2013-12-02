@@ -1,6 +1,6 @@
 var pg = require('pg'),
     Promise = require('promise'),
-    dbPath = 'postgres://chrislyons@localhost/pixel_animator';
+    dbPath = process.env.DATABASE_URL || 'postgres://chrislyons@localhost/pixel_animator';
 
 var db = {
   query: function(sql, params) {

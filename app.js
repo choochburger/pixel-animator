@@ -8,7 +8,8 @@ var everyauth = require('everyauth'),
     routes = require('./routes'),
     http = require('http'),
     path = require('path'),
-    config = require('./config'),
+    env = process.env.NODE_ENV,
+    config = env && env !== 'development' ? {} : require('./config'),
     auth = require('./auth')(config);
 
 var app = express();
@@ -23,7 +24,7 @@ app
   .use(express.logger('dev'))
   .use(express.bodyParser())
   .use(express.methodOverride())
-  .use(express.cookieParser(config.cookieSecret))
+  .use(express.cookieParser(process.env.COOKIE_SECRET || config.cookieSecret))
   .use(express.session())
   .use(everyauth.middleware(app))
   .use(app.router)
