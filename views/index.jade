@@ -2,7 +2,6 @@ extends layout
 
 block content
   if (!everyauth.loggedIn)
-    h2 Not Authenticated
     p Login with Google
     .google_login
       a(href='/auth/google', style='border: 0px')
@@ -18,3 +17,7 @@ block content
     p
       | Welcome to Pixel Animator, #{everyauth.user.first_name} #{everyauth.user.last_name}
     img(src='#{everyauth.user.avatar}' style='max-width: 100px;')
+
+    hr
+
+    a(href='/logout') Logout
