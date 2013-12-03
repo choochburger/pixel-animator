@@ -2,6 +2,38 @@ doctype 5
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/styles.css')
   body
+    nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
+      .navbar-header
+        button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(href='/') Pixel Animator
+      .collapse.navbar-collapse
+        ul.nav.navbar-nav.navbar-right
+          li.dropdown
+            a.dropdown-toggle(href='#', data-toggle='dropdown')
+              if (!everyauth.loggedIn)
+                | Login
+              else
+                | #{everyauth.user.first_name} #{everyauth.user.last_name}
+              b.caret
+            ul.dropdown-menu
+              if (!everyauth.loggedIn)
+                li
+                  a(href='/auth/google') Sign in with Google
+                li.divider
+                li
+                  a(href='/auth/facebook') Sign in with Facebook
+              else
+                li
+                  a(href='/logout') Logout
+
     block content
+
+    script(src='/javascripts/jquery.js')
+    script(src='/javascripts/bootstrap.js')
