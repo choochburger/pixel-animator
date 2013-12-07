@@ -5,14 +5,17 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express":               "3.4.4",
-    "jade":                  "0.35.0",
-    "everyauth":             "0.4.5",
-    "pg":                    "2.8.3",
-    "promise":               "3.2.0"
+    "express":   "3.4.4",
+    "jade":      "0.35.0",
+    "everyauth": "0.4.5",
+    "pg":        "2.8.3",
+    "promise":   "3.2.0"
   },
   "devDependencies": {
     "grunt":                 "0.4.2",
     "grunt-contrib-jasmine": "0.5.2"
+  },
+  "engines": {
+    "node": ">=0.10.5"
   }
 }
