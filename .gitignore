@@ -14,3 +14,6 @@ results
 npm-debug.log
 
 config.js
+
+node_modules/grunt-contrib-jasmine/
+node_modules/grunt/
