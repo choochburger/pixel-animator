@@ -35,5 +35,13 @@ html
 
     block content
 
-    script(src='/javascripts/jquery.js')
-    script(src='/javascripts/bootstrap.js')
+    if (process.env.NODE_ENV === 'production')
+      script(src='/javascripts/app.concat.min.js')
+    else
+      script(src='/javascripts/jquery.js')
+      script(src='/javascripts/bootstrap.js')
+      script(src='/javascripts/underscore.js')
+      script(src='/javascripts/backbone.js')
+      script(src='/javascripts/backbone.babysitter.js')
+      script(src='/javascripts/backbone.wreqr.js')
+      script(src='/javascripts/backbone.marionette.js')
