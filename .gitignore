@@ -19,3 +19,5 @@ node_modules/grunt-contrib-jasmine/
 node_modules/grunt/
 
 public/javascripts
+
+app.concat.js
