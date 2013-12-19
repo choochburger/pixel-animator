@@ -8,7 +8,7 @@ var everyauth = require('everyauth'),
     routes = require('./routes'),
     http = require('http'),
     path = require('path'),
-    env = process.env.NODE_ENV,
+    env = process.env.NODE_ENV || 'development',
     config = env && env !== 'development' ? {} : require('./config'),
     auth = require('./auth')(config);
 

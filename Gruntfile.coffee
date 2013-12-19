@@ -4,7 +4,8 @@ module.exports = (grunt) ->
     dirs:
       jasmine: 'tests/jasmine'
       assets:
-        js: 'assets/javascripts'
+        root: 'assets',
+        js:   '<%= dirs.assets.root %>/javascripts'
       dest:
         root: 'public'
         js:   '<%= dirs.dest.root %>/javascripts'
@@ -36,14 +37,14 @@ module.exports = (grunt) ->
   # Tasks
   grunt.registerTask 'test',    ['jasmine']
   grunt.registerTask 'dev',     ['symlink']
-  grunt.registerTask 'default', ['test', 'concatJs:views/layout.jade:assets']
+  grunt.registerTask 'default', ['test', 'concatJs']
 
-  # Grab javascript file paths (in order) and hand them off to concat
-  grunt.registerTask 'concatJs', 'Parse JS paths from file', (filePath, rootDir) ->
-    manifest = grunt.file.read filePath
-    tags = /(\/\/- javascripts)([\s\S]*)(\/\/- \/javascripts)/g.exec(manifest)[2]
-    scripts = tags.match /\/.*.js/g
-    scripts.forEach (script, i) ->
-      scripts[i] = rootDir + script
+  # Grab all javascript paths from the manifest, prepend them with the assets dir, and squash 'em
+  grunt.registerTask 'concatJs',  ->
+    dirs = grunt.config.get('dirs')
+    assetsDir = dirs.assets.root
+    scripts = require('./assets/javascripts')['development']
+    scripts.forEach (path, i) ->
+      scripts[i] = assetsDir + path
     grunt.config.set 'concat.dist.src', scripts
     grunt.task.run 'concat'

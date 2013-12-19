@@ -35,15 +35,5 @@ html
 
     block content
 
-    if (process.env.NODE_ENV === 'production')
-      script(src='/javascripts/app.concat.js')
-    else
-      //- javascripts
-      script(src='/javascripts/lib/jquery.js')
-      script(src='/javascripts/lib/bootstrap.js')
-      script(src='/javascripts/lib/underscore.js')
-      script(src='/javascripts/lib/backbone.js')
-      script(src='/javascripts/lib/backbone.babysitter.js')
-      script(src='/javascripts/lib/backbone.wreqr.js')
-      script(src='/javascripts/lib/backbone.marionette.js')
-      //- /javascripts
+    each script in javascripts
+      script(src='#{script}')
