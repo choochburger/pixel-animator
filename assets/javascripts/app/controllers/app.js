@@ -1,19 +1,21 @@
 (function() {
 
   App.controllers.App = Marionette.Controller.extend({
+    showView: function(viewName, View) {
+      App[viewName] = App[viewName] || new View();
+      App.mainRegion.show(App[viewName]);
+    },
+
     showIndex: function() {
-      App.indexView = App.indexView || new App.views.Index();
-      App.mainRegion.show(App.indexView);
+      this.showView('indexView', App.views.Index);
     },
 
     showAnimations: function() {
-      App.animationsView = App.newAnimationsView || new App.views.Animations();
-      App.mainRegion.show(App.animationsView);
+      this.showView('animationsView', App.views.Animations);
     },
 
     showNewAnimation: function() {
-      App.newAnimationView = App.newAnimationView || new App.views.NewAnimation();
-      App.mainRegion.show(App.newAnimationView);
+      this.showView('newAnimationView', App.views.NewAnimation);
     }
   });
 
