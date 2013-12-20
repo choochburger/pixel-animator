@@ -38,8 +38,11 @@ module.exports = (grunt) ->
         src: '<%= dirs.jasmine %>/**/*.spec.js'
 
     watch:
-      scripts:
-        files: ['<%= dirs.assets.js %>/**/*.js']
+      templates:
+        files: '<%= dirs.assets.templates %>/**/*.hbs.jade'
+        tasks: ['jade_handlebars']
+        options:
+          debounceDelay: 1500
 
   grunt.loadNpmTasks 'grunt-contrib-jasmine'
   grunt.loadNpmTasks 'grunt-contrib-watch'
@@ -49,7 +52,7 @@ module.exports = (grunt) ->
 
   # Tasks
   grunt.registerTask 'test',    ['jasmine']
-  grunt.registerTask 'dev',     ['symlink', 'jade_handlebars']
+  grunt.registerTask 'dev',     ['symlink', 'jade_handlebars', 'watch']
   grunt.registerTask 'default', ['test', 'jade_handlebars', 'concatJs']
 
   # Grab all javascript paths from the manifest, prepend them with the assets dir, and squash 'em
