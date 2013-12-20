@@ -2,6 +2,7 @@ module.exports = {
 
   development: [
     '/javascripts/lib/jquery.js',
+    '/javascripts/lib/prefixfree.js',
     '/javascripts/lib/handlebars.runtime.js',
     '/javascripts/lib/bootstrap.js',
     '/javascripts/lib/underscore.js',

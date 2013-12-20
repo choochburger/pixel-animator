@@ -1,0 +1,27 @@
+.animation_grid {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-block;
+  padding: 12px 12px 24px;
+  user-select: none;
+}
+
+.animation_grid__row {
+  height: 14px;
+  margin: 0;
+}
+
+.animation_grid__cell {
+  border: 1px solid #ccc;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  &:hover {
+    background: #222;
+  }
+}
+
+.animation_grid__cell--selected {
+  background: #111;
+}

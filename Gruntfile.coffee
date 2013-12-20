@@ -67,7 +67,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'test',    ['jasmine']
   grunt.registerTask 'assets',  ['jade_handlebars', 'sass']
   grunt.registerTask 'dev',     ['symlink', 'assets', 'watch']
-  grunt.registerTask 'default', ['test', 'assets', 'concatJs']
+  grunt.registerTask 'default', ['assets', 'test', 'concatJs']
 
   # Grab all javascript paths from the manifest, prepend them with the assets dir, and squash 'em
   grunt.registerTask 'concatJs',  ->
