@@ -74,10 +74,11 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-jade-handlebars'
 
   # Tasks
-  grunt.registerTask 'test',    ['setJsPaths', 'jasmine:dist:build', 'connect']
-  grunt.registerTask 'assets',  ['jade_handlebars', 'sass']
-  grunt.registerTask 'dev',     ['symlink', 'assets', 'watch']
-  grunt.registerTask 'default', ['assets', 'setJsPaths', 'jasmine', 'concat']
+  grunt.registerTask 'test',     ['setJsPaths', 'jasmine:dist:build', 'connect']
+  grunt.registerTask 'assets',   ['jade_handlebars', 'sass']
+  grunt.registerTask 'dev',      ['symlink', 'assets', 'watch']
+  grunt.registerTask 'codeship', ['jade_handlebars', 'setJsPaths', 'jasmine']
+  grunt.registerTask 'default',  ['assets', 'setJsPaths', 'jasmine', 'concat']
 
   # Grab all javascript paths from the manifest, prepend them with the assets dir, and set them on the tasks that need them
   grunt.registerTask 'setJsPaths',  ->
