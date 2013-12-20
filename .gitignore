@@ -24,3 +24,6 @@ app.concat.js
 templates.js
 
 .sass-cache
+
+.grunt/
+_SpecRunner.html

@@ -37,7 +37,16 @@ module.exports = (grunt) ->
 
     jasmine:
       dist:
-        src: '<%= dirs.jasmine %>/**/*.spec.js'
+        src: require('./assets/javascripts')['development']
+        options:
+          specs: '<%= dirs.jasmine %>/**/*.spec.js'
+
+    connect:
+      server:
+        options:
+          directory: '.'
+          port:      9999
+          keepalive: true
 
     sass:
       dist:
@@ -61,20 +70,21 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-symlink'
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-sass'
+  grunt.loadNpmTasks 'grunt-contrib-connect'
   grunt.loadNpmTasks 'grunt-jade-handlebars'
 
   # Tasks
-  grunt.registerTask 'test',    ['jasmine']
+  grunt.registerTask 'test',    ['setJsPaths', 'jasmine:dist:build', 'connect']
   grunt.registerTask 'assets',  ['jade_handlebars', 'sass']
   grunt.registerTask 'dev',     ['symlink', 'assets', 'watch']
-  grunt.registerTask 'default', ['assets', 'test', 'concatJs']
+  grunt.registerTask 'default', ['assets', 'test', 'setJsPaths', 'concat']
 
-  # Grab all javascript paths from the manifest, prepend them with the assets dir, and squash 'em
-  grunt.registerTask 'concatJs',  ->
+  # Grab all javascript paths from the manifest, prepend them with the assets dir, and set them on the tasks that need them
+  grunt.registerTask 'setJsPaths',  ->
     dirs = grunt.config.get('dirs')
     assetsDir = dirs.assets.root
     scripts = require('./assets/javascripts')['development']
     scripts.forEach (path, i) ->
       scripts[i] = assetsDir + path
-    grunt.config.set 'concat.dist.src', scripts
-    grunt.task.run 'concat'
+    grunt.config.set 'concat.dist.src',  scripts
+    grunt.config.set 'jasmine.dist.src', scripts
