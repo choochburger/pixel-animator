@@ -5,6 +5,10 @@
     Backbone.history.start();
   });
 
+  App.addRegions({
+    mainRegion: '.main'
+  });
+
   App.start();
 
 })();

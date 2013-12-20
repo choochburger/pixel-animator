@@ -13,6 +13,9 @@ module.exports = {
     '/javascripts/app/templates.js',
     '/javascripts/app/controllers/app.js',
     '/javascripts/app/routers/app.js',
+    '/javascripts/app/views/index.js',
+    '/javascripts/app/views/animations.js',
+    '/javascripts/app/views/new_animation.js',
     '/javascripts/app/init.js',
   ],
 
