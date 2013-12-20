@@ -6,7 +6,8 @@
     views:       {},
     models:      {},
     routers:     {},
-    controllers: {}
+    controllers: {},
+    templates:   {}
   });
 
 })();

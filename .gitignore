@@ -21,3 +21,4 @@ node_modules/grunt/
 public/javascripts
 
 app.concat.js
+templates.js

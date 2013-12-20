@@ -4,8 +4,9 @@ module.exports = (grunt) ->
     dirs:
       jasmine: 'tests/jasmine'
       assets:
-        root: 'assets',
-        js:   '<%= dirs.assets.root %>/javascripts'
+        root:      'assets',
+        js:        '<%= dirs.assets.root %>/javascripts'
+        templates: '<%= dirs.assets.root %>/templates'
       dest:
         root: 'public'
         js:   '<%= dirs.dest.root %>/javascripts'
@@ -16,6 +17,17 @@ module.exports = (grunt) ->
       explicit:
         src:  '<%= dirs.assets.js %>'
         dest: '<%= dirs.dest.js %>'
+
+    jade_handlebars:
+      options:
+        namespace: 'App.templates'
+        processName: (filePath) ->
+          dirs = grunt.config.get('dirs')
+          templatesDir = dirs.assets.templates
+          /(assets\/templates\/)(.*)(.hbs.jade)/g.exec(filePath)[2]
+      dist:
+        files:
+          '<%= dirs.assets.js %>/app/templates.js': '<%= dirs.assets.templates %>/**/*.hbs.jade'
 
     concat:
       dist:
@@ -33,11 +45,12 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-symlink'
   grunt.loadNpmTasks 'grunt-contrib-concat'
+  grunt.loadNpmTasks 'grunt-jade-handlebars'
 
   # Tasks
   grunt.registerTask 'test',    ['jasmine']
-  grunt.registerTask 'dev',     ['symlink']
-  grunt.registerTask 'default', ['test', 'concatJs']
+  grunt.registerTask 'dev',     ['symlink', 'jade_handlebars']
+  grunt.registerTask 'default', ['test', 'jade_handlebars', 'concatJs']
 
   # Grab all javascript paths from the manifest, prepend them with the assets dir, and squash 'em
   grunt.registerTask 'concatJs',  ->
