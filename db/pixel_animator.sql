@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.3.1
 -- Dumped by pg_dump version 9.3.1
--- Started on 2013-12-01 20:50:11 EST
+-- Started on 2013-12-21 17:47:03 EST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -81,6 +81,7 @@ ALTER SEQUENCE user_accounts_id_seq OWNED BY users.id;
 CREATE TABLE user_animations (
     id integer NOT NULL,
     user_id integer,
+    title text,
     data text
 );
 
@@ -153,7 +154,7 @@ GRANT ALL ON SCHEMA public TO chrislyons;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2013-12-01 20:50:11 EST
+-- Completed on 2013-12-21 17:47:03 EST
 
 --
 -- PostgreSQL database dump complete
