@@ -12,15 +12,15 @@ describe('New Animation', function() {
   });
 
   it('should toggle grid cells', function() {
-    var $cell = view.$el.find('.animation_grid__cell').first();
+    var $cell = view.$el.find('.animation_grid__cell:first');
 
     // Select
     $cell.trigger('mousedown');
-    expect($cell.hasClass(view.selectedClass)).toBe(true);
+    expect($cell).toHaveClass(view.selectedClass);
 
     // Deselect
     $cell.trigger('mousedown');
-    expect($cell.hasClass(view.selectedClass)).toBe(false);
+    expect($cell).not.toHaveClass(view.selectedClass);
   });
 
 });

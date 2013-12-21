@@ -2,7 +2,10 @@ module.exports = (grunt) ->
 
   grunt.initConfig
     dirs:
-      jasmine: 'tests/jasmine'
+      jasmine:
+        root:   'tests/jasmine'
+        specs:  '<%= dirs.jasmine.root %>/specs'
+        vendor: '<%= dirs.jasmine.root %>/vendor'
       assets:
         root:      'assets',
         js:        '<%= dirs.assets.root %>/javascripts'
@@ -39,7 +42,9 @@ module.exports = (grunt) ->
       dist:
         src: require('./assets/javascripts')['development']
         options:
-          specs: '<%= dirs.jasmine %>/**/*.spec.js'
+          specs:    '<%= dirs.jasmine.specs %>/**/*.spec.js'
+          vendor:   '<%= dirs.jasmine.vendor %>/**/*.js'
+          template: '<%= dirs.jasmine.root %>/runner.tmpl'
 
     connect:
       server:
