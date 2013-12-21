@@ -12,7 +12,7 @@ describe('New Animation', function() {
   });
 
   it('should toggle grid cells', function() {
-    var $cell = view.$el.find('.animation_grid__cell:first');
+    var $cell = view.$el.find('.animation_grid__cell').first();
 
     // Select
     $cell.trigger('mousedown');
