@@ -1,8 +1,12 @@
-h4 Create a new animation
-
-.animation_grid
-  - var NUM_CELLS = 36
-  - for (var x = 0; x < NUM_CELLS; x++)
-    .animation_grid__row
-      - for (var y = 0; y < NUM_CELLS; y++)
-        .animation_grid__cell
+.animation_grid__container
+  .row.form-group
+    label Title
+    input.form-control.animation_title(type='text', placeholder='Enter Title')
+  .row.animation_grid
+    - var NUM_CELLS = 36
+    - for (var x = 0; x < NUM_CELLS; x++)
+      .animation_grid__row
+        - for (var y = 0; y < NUM_CELLS; y++)
+          .animation_grid__cell
+  .row.animation_grid__buttons
+    button.animation_grid__save_btn.btn.btn-default(type='button') Save

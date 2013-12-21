@@ -9,7 +9,8 @@
 
     events: {
       'mousedown .animation_grid__cell' : 'selectCell',
-      'mouseover .animation_grid__cell' : 'onOverCell'
+      'mouseover .animation_grid__cell' : 'onOverCell',
+      'click .animation_grid__save_btn' : 'save'
     },
 
     isMouseDown: false,
@@ -43,6 +44,45 @@
       } else {
         $cell.addClass(this.selectedClass);
       }
+    },
+
+    getTitle: function() {
+      return this.$el.find('.animation_title').val();
+    },
+
+    getCellData: function() {
+      var self = this, data = [];
+
+      this.$el.find('.animation_grid__row').each(function() {
+        var $row = $(this),
+            rowData = [];
+
+        $row.find('.animation_grid__cell').each(function() {
+          var $cell = $(this);
+          if ($cell.hasClass(self.selectedClass)) {
+            rowData.push($cell.css('background-color'));
+          } else {
+            rowData.push(-1);
+          }
+        });
+
+        data.push(rowData);
+      });
+
+      return data;
+    },
+
+    save: function(e) {
+      var title = this.getTitle(),
+          data;
+
+      if (!title || !title.length) {
+        return alert('Please enter a title');
+      }
+
+      data = this.getCellData();
+
+      // this.controller.save(title, data);
     }
   });
 

@@ -1,3 +1,7 @@
+.animation_title {
+  margin-bottom: 12px;
+}
+
 .animation_grid {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -24,4 +28,8 @@
 
 .animation_grid__cell--selected {
   background: #111;
+}
+
+.animation_grid__buttons {
+  margin-top: 12px;
 }

@@ -23,4 +23,30 @@ describe('New Animation', function() {
     expect($cell).not.toHaveClass(view.selectedClass);
   });
 
+  it('should require a title when saving', function() {
+    spyOn(window, 'alert');
+    view.save();
+    expect(window.alert).toHaveBeenCalled();
+  });
+
+  it('should get selected cell data', function() {
+    var $cells = view.$el.find('.animation_grid__cell');
+
+    // Select first and last cells of the grid
+    // Ex:
+    //     X00
+    //     000
+    //     00X
+
+    $cells.first().addClass(view.selectedClass);
+    $cells.last().addClass(view.selectedClass);
+
+    var data = view.getCellData(),
+        numRows = data.length,
+        numCols = data[0].length;
+
+    expect(data[0][0]).not.toBe(-1);
+    expect(data[numRows-1][numCols-1]).not.toBe(-1);
+  });
+
 });
