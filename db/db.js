@@ -13,11 +13,10 @@ var db = {
           reject(msg);
           return console.error(msg, err);
         }
-
         client.query(sql, params, function(err, result) {
           done();
           if (err) {
-            var msg = 'error running query';
+            var msg = new Error(err).stack;
             reject(msg);
             return console.error(msg, err);
           }

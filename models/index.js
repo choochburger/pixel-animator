@@ -1,3 +1,4 @@
 module.exports = {
-  users: require('./users.js')
+  users      : require('./users.js'),
+  animations : require('./animations.js')
 }

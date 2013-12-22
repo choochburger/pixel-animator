@@ -77,4 +77,17 @@ module.exports = function(config) {
     })
     .redirectPath('/');
 
+  return {
+
+    // Middleware for making sure user is logged in
+    checkAuth: function(req, res, next) {
+      if (req.user) {
+        return next();
+      } else {
+        return res.send(403, 'Unauthorized');
+      }
+    }
+
+  }
+
 };

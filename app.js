@@ -10,7 +10,8 @@ var everyauth = require('everyauth'),
     path = require('path'),
     env = process.env.NODE_ENV || 'development',
     config = env && env !== 'development' ? {} : require('./config'),
-    auth = require('./auth')(config);
+    auth = require('./auth')(config),
+    models = require('./models');
 
 var app = express();
 
@@ -37,6 +38,8 @@ if (app.get('env') !== 'production') {
 }
 
 app.get('/', routes.index);
+
+app.post('/animations/new', auth.checkAuth, models.animations.create);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
