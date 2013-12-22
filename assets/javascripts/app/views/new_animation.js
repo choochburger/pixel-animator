@@ -82,7 +82,10 @@
 
       data = this.getCellData();
 
-      // this.controller.save(title, data);
+      this.trigger('save', {
+        title: title,
+        data:  data
+      });
     }
   });
 

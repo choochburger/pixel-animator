@@ -49,4 +49,17 @@ describe('New Animation', function() {
     expect(data[numRows-1][numCols-1]).not.toBe(-1);
   });
 
+  it('should trigger a save event with title and data', function() {
+    var title = 'Test Title',
+        numCells = view.$el.find('.animation_grid__cell').length;
+
+    spyOn(view, 'getTitle').andReturn(title);
+
+    view.on('save', function(e) {
+      var numSavedCells = _.flatten(e.data).length;
+      expect(e.title).toBe(title);
+      expect(numSavedCells).toBe(numCells);
+    }).save();
+  });
+
 });
