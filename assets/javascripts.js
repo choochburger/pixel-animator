@@ -13,6 +13,7 @@ module.exports = {
     '/javascripts/app/app.js',
     '/javascripts/app/templates.js',
     '/javascripts/app/controllers/app.js',
+    '/javascripts/app/controllers/new_animation.js',
     '/javascripts/app/routers/app.js',
     '/javascripts/app/views/index.js',
     '/javascripts/app/views/animations.js',

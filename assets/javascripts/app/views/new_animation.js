@@ -80,7 +80,7 @@
         return alert('Please enter a title');
       }
 
-      data = this.getCellData();
+      data = JSON.stringify( this.getCellData() );
 
       this.trigger('save', {
         title: title,
