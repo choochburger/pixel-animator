@@ -56,7 +56,8 @@ describe('New Animation', function() {
     spyOn(view, 'getTitle').andReturn(title);
 
     view.on('save', function(e) {
-      var numSavedCells = _.flatten(e.data).length;
+      var data = JSON.parse(e.data);
+      var numSavedCells = _.flatten(data).length;
       expect(e.title).toBe(title);
       expect(numSavedCells).toBe(numCells);
     }).save();
