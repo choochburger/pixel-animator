@@ -1,3 +1,5 @@
+$cellSize: 12px;
+
 .animation_title {
   margin-bottom: 12px;
 }
@@ -12,15 +14,15 @@
 }
 
 .animation_grid__row {
-  height: 14px;
+  height: $cellSize;
   margin: 0;
 }
 
 .animation_grid__cell {
   border: 1px solid #ccc;
   display: inline-block;
-  width: 14px;
-  height: 14px;
+  width: $cellSize;
+  height: $cellSize;
   &:hover {
     background: #222;
   }
