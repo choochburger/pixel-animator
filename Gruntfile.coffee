@@ -57,6 +57,7 @@ module.exports = (grunt) ->
       dist:
         options:
           lineNumbers: true
+          bundleExec: true
         files:
           '<%= dirs.dest.css %>/app.css': '<%= dirs.assets.sass %>/app.scss'
 
