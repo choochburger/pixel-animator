@@ -86,6 +86,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'default',  ['assets', 'setJsPaths', 'concat']
   grunt.registerTask 'heroku:development',  ['symlink', 'assets']
   grunt.registerTask 'heroku:production',  ['default']
+  grunt.registerTask 'heroku:',  ['default']
 
   # Grab all javascript paths from the manifest, prepend them with the assets dir, and set them on the tasks that need them
   grunt.registerTask 'setJsPaths',  ->
