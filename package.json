@@ -2,12 +2,10 @@
   "name": "pixel-animator",
   "version": "0.0.1",
   "scripts": {
-    "start": "node app.js",
-    "postinstall": "./node_modules/grunt-cli/bin/grunt"
+    "start": "node app.js"
   },
   "dependencies": {
     "grunt":                 "0.4.2",
-    "grunt-cli":             "0.1.13",
     "grunt-contrib-concat":  "0.3.0",
     "grunt-contrib-sass":    "0.6.0",
     "grunt-jade-handlebars": "0.1.2",
